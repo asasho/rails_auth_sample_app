@@ -26,6 +26,11 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "password" } }
     end
     follow_redirect!
-    assert_template 'users/show'
+    #assert_template 'users/show'
+    #assert_not flash.FILL_IN
+  end
   
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('')
+  end
 end
